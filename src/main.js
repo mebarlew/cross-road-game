@@ -5,7 +5,6 @@ import { createCamera } from './components/Camera';
 import { createRenderer } from './components/Renderer';
 import { createControls } from './components/Controls';
 import { createStars } from './components/Stars';
-import { createMoon } from './components/Moon';
 
 // Initialize scene and components
 const scene = new THREE.Scene();
@@ -15,7 +14,6 @@ const controls = createControls(camera, renderer.domElement);
 const earth = createEarth();
 const atmosphere = createAtmosphere();
 const stars = createStars(10000, 150);
-const { moonSystem, update: updateMoon } = createMoon();
 
 // Improved lighting for better visibility
 // Main directional light (sun)
@@ -36,7 +34,6 @@ scene.add(ambientLight);
 scene.add(earth);
 scene.add(atmosphere);
 scene.add(stars);
-scene.add(moonSystem);
 
 // Animation loop
 function animate() {
@@ -47,9 +44,6 @@ function animate() {
   
   // Update earth rotation
   earth.rotation.y += 0.001;
-  
-  // Update moon position and rotation
-  updateMoon();
   
   // Render scene
   renderer.render(scene, camera);
