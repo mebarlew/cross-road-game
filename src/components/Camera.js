@@ -1,23 +1,7 @@
 import * as THREE from 'three';
 
 export const Camera = () => {
-    const size = 300;
-    const viewRatio = window.innerWidth / window.innerHeight;
-    const width = viewRatio < 1 ? size : size * viewRatio;
-    const height = viewRatio < 1 ? size / viewRatio : size;
-
-    const camera = new THREE.OrthographicCamera(
-        -width / 2,
-        width / 2,
-        height / 2,
-        -height / 2,
-        100,
-        900,
-    );
-
-    camera.up.set(0, 0, 1);
-    camera.position.set(300, -300, 300);
-    camera.lookAt(0, 0, 0);
-
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 15;
     return camera;
 };
