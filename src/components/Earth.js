@@ -2,17 +2,27 @@ import * as THREE from 'three';
 import earthVertexShader from '../shaders/earth/earthVertex.glsl';
 import earthFragmentShader from '../shaders/earth/earthFragment.glsl';
 
-export const Sphere = () => {
+/**
+ * Creates and configures an Earth mesh with custom shaders
+ * @returns {THREE.Mesh} Earth mesh with texture and shader effects
+ */
+export const createEarth = () => {
+    // Create geometry for Earth
     const geometry = new THREE.SphereGeometry(5, 50, 50);
+    
+    // Load Earth texture
     const texture = new THREE.TextureLoader().load('/assets/images/earth.jpg');
+    
+    // Create shader material with the loaded texture
     const material = new THREE.ShaderMaterial({
         vertexShader: earthVertexShader,
         fragmentShader: earthFragmentShader,
-        // passing prop to shaders from parent
         uniforms: {
             globeTexture: { value: texture },
         },
     });
-    const sphere = new THREE.Mesh(geometry, material);
-    return sphere;
-};
+    
+    // Create and return Earth mesh
+    const earth = new THREE.Mesh(geometry, material);
+    return earth;
+}; 
