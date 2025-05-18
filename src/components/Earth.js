@@ -11,7 +11,7 @@ export const createEarth = () => {
     const geometry = new THREE.SphereGeometry(5, 50, 50);
     
     // Load Earth texture
-    const texture = new THREE.TextureLoader().load('/assets/images/earth.jpg');
+    const texture = new THREE.TextureLoader().load('src/assets/images/earth.jpg');
     
     // Create shader material with the loaded texture
     const material = new THREE.ShaderMaterial({
